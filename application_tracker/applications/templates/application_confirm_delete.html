@@ -1,0 +1,20 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>Delete Application</title>
+  </head>
+  <body>
+      <h1>Delete this application?</h1>
+        <p>
+          <strong>{{ app.company }}</strong> — {{ app.position }}<br/>
+          Applied: {{ app.date_applied }} · Status: {{ app.status }}
+        </p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'applications' %}">Cancel</a>
+      </form>
+    </div>
+  </body>
+</html>

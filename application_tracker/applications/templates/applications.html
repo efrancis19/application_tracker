@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applications</title>
+</head>
+<body>
+    <h1>Job Applications</h1>
+        <p><a href="{% url 'create_application' %}"> Add an application</a></p>
+    <ul>
+        {% for a in applications %}
+            <li>{{ a.company }} — {{ a.position }} ({{ a.status }})</li>
+            <a href="{% url 'delete_application' a.id %}">Delete</a>
+        {% empty %}
+            <li>No applications yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

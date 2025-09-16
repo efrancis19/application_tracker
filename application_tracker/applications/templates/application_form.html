@@ -1,0 +1,30 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <title>New Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      button {background: #2563eb; color: #fff;}
+    </style>
+  </head>
+  <body>
+    <h1>New Application</h1>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label><br />
+          {{ field }}
+          {% if field.errors %}
+            <div style="color:#b91c1c;">{{ field.errors|striptags }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+        <button type="submit">Save</button>
+        <a href="{% url 'applications' %}">Cancel</a>
+      </div>
+    </form>
+  </body>
+</html>
