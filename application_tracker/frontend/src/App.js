@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import ApplicationList from "./ApplicationList";
 
 import { useEffect } from "react";
 
@@ -10,7 +11,12 @@ function App() {
       .then(data => console.log(data));
   }, []);
 
-  return <h1>React + Django test</h1>;
+  return (
+  <main>
+    <h1>React And Django App Test</h1>
+    <ApplicationList />   {}
+  </main>
+  );
 }
 
 export default App;
