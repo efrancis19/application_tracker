@@ -1,25 +1,39 @@
 import { useEffect, useState } from "react";
 import { API } from "./api";
+import AddApplication from "./AddApplication";
 
 export default function ApplicationsList() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    console.log("API Base:", API);
-    fetch(`${API}/api/applications/`)
-      .then(r => r.json())
-      .then(d => setRows(Array.isArray(d) ? d : (d.results ?? [])))
-      .catch(err => console.error("Fetch failed:", err));
-  }, []);
+  const fetchApplications = async () => {
+    try {
+      const res = await fetch(`${API}/api/applications/`);
+      const data = await res.json();
+      const applications = Array.isArray(data) ? data : (data.results ?? []);
+      setRows(applications);
+    } catch (err) {
+      console.error("Fetch failed:", err);
+    }
+  };
+
+  fetchApplications();
+}, []);
+
+  const handleAdd = (newApp) => {
+    setRows(prev => [newApp, ...prev]);
+  };
 
   return (
-    <ul>
-      {rows.map(item => (
-        <li key={item.id || item.name}>
-          {item.company ?? item.name ?? JSON.stringify(item)}
-          {item.position}
-        </li>
-      ))}
-    </ul>
+    <div>
+      <AddApplication onAdd={handleAdd} />
+      <ul>
+        {rows.map(item => (
+          <li key={item.id}>
+            {item.company} — {item.position}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
