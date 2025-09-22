@@ -13,3 +13,5 @@ Planned Stack:
 - JavaScript, specifically React JS for the frontend.
 
 Setup Instructions:
+- Clone the repo and then enter the application_tracker folder and run "python manage.py migrate" and "python manage.py runserver".
+- Navigate into the frontend directory and run "npm install" to install node_modules. Then run "npm start" to run the React frontend.
