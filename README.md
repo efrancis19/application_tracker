@@ -14,4 +14,4 @@ Planned Stack:
 
 Setup Instructions:
 - Clone the repo and then enter the application_tracker folder and run "python manage.py migrate" and "python manage.py runserver".
-- Navigate into the frontend directory and run "npm install" to install node_modules. Then run "npm start" to run the React frontend.
+- In a second terminal, navigate into the frontend directory and run "npm install" to install node_modules. Then run "npm start" to run the React frontend.
