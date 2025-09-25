@@ -1,5 +1,7 @@
 ﻿# Job Application Tracker
 
+Note: Some of my commits may appear as "efrancis03" which is my university Gitlab username.
+
 This app is a job application tracker that allows users to keep track of job applications.
 
 Features of the app will include:
