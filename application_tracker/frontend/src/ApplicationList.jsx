@@ -4,6 +4,7 @@ import AddApplication from "./AddApplication";
 
 export default function ApplicationsList() {
   const [rows, setRows] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
   const fetchApplications = async () => {
@@ -12,6 +13,7 @@ export default function ApplicationsList() {
       const data = await res.json();
       const applications = Array.isArray(data) ? data : (data.results ?? []);
       setRows(applications);
+      setLoading(false);
     } catch (err) {
       console.error("Fetch failed:", err);
     }
@@ -24,13 +26,23 @@ export default function ApplicationsList() {
     setRows(prev => [newApp, ...prev]);
   };
 
+  if (loading) {
+    return (
+      <div>
+        <AddApplication onAdd={handleAdd} />
+        <p>Loading applications...</p>
+      </div>
+    );
+  }
+
   return (
     <div>
       <AddApplication onAdd={handleAdd} />
+      <p>Total: {rows.length} applications.</p>
       <ul>
         {rows.map(item => (
           <li key={item.id}>
-            {item.company} — {item.position}
+            {item.company}: {item.position} - {item.date_applied}
           </li>
         ))}
       </ul>

@@ -1,10 +1,11 @@
 from django.db import models
+from datetime import date
 
 class Application(models.Model):
     company = models.CharField(max_length=100)
     position = models.CharField(max_length=100)
-    date_applied = models.DateField(null=True, blank=True)
-    status = models.CharField(max_length=100, choices=
+    date_applied = models.DateField(default=date.today, blank=True, null=True)  # default=date.today ensures that Django uses today's date automatically
+    status = models.CharField(max_length=100, choices=                          # without the need to define it manually.
         [("applied", "Applied"),
          ("interview", "Interview"),
          ("offer", "Offer"),
